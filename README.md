@@ -34,6 +34,23 @@ with HeliosSession() as pf:
     v, angle = pf.get_bus_voltage("D")
 ```
 
+## Status
+
+**Runs.** The power flow converges in 3 Newton-Raphson iterations, and the regenerated
+`volt_rat` reproduces the distributed `volt_rat.dat` to every printed digit.
+
+This is a power-flow-only case: the repository holds no dynamic data and no disturbance file,
+so nothing here reaches RAMSES.
+
+`PowerFlowWithHelios.ipynb` covers the HELIOS API on this case: solving, querying, the SVG
+one-line diagram, a PV curve traced by continuation, and N-1 contingency screening. One
+result from it is worth knowing before you trust any screen: opening the `A-B` transformer
+de-energises the whole network, and because the screen then evaluates only the island that
+still holds the slack bus, it reports that contingency as **acceptable**. Check connectivity
+alongside the acceptance flag.
+
+Verified against **stepss 3.70** (RAMSES 3.70, HELIOS 1.4.1) on Linux.
+
 ## Documentation
 
 The data formats are documented in the STEPSS user guide at [stepss.sps-lab.org/user-guide/power-flow](https://stepss.sps-lab.org/user-guide/power-flow/).
