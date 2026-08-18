@@ -1,0 +1,13 @@
+# Simulation outputs
+*.trj
+*.cur
+*.trace
+temp_*
+
+# Binaries
+*.exe
+*.dll
+
+# Claude runtime files
+.claude/
+.mcp.json
